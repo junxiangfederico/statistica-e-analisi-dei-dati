@@ -18,7 +18,7 @@
 \section{Definizioni}
 La definizione assiomatica della probabilità riassume in pochi punti quei concetti che si possono definire intuitivi nel calcolo delle probabilità.
 
-\subsection*{Un'introduzione generale}
+\subsection{Un'introduzione generale}
 \begin{itemize}
 \item Popolazione: insieme di tutti gli elementi che ci interessano
 \item Campione: sottoinsieme (rappresentativo) della popolazione che viene studiato\\
@@ -39,6 +39,40 @@ Riguardo al nostro campione diciamo che $n$ rappresenta la dimensione, o taglia 
 La mediana campionaria è uno stimatore "robusto" rispetto agli outlier; viene calcolato riordinando i valori in ordine di grandezza, e prendendo il valore/valori centrali. %Guardare su foglio 1R, definizione, calcolo
 \item La moda campionaria rappresenta il valore con frequenza massima
 \end{itemize}
+
+\subsection{Concetto di dispersione e varianza campionaria}
+Consideriamo due insiemi con una dispersione di carattere molto diverso, ad esempio\begin{center}
+$A = \{1, 2, 5, 6, 7\}$, \={a}  = 4\\
+$B = \{-40, 0, 5, 20, 35\}$, \={b}  = 4\\
+\end{center}
+E' verificabile che la media campionaria di questi insiemi è la medesima, ma hanno un carattere di dispersione molto differente. Come possiamo rappresentare questo concetto? Con la \textbf{varianza campionaria} rappresentato dalla dicitura $s^2$. %manca la formula qua (09/03_1)
+
+Di conseguenza calcolando la radice ricaviamo: $s = \sqrt{s^2}$ chiamata \textbf{deviazione standard campionaria}. Come viene influenzata la deviazione standard campionaria rispetto alla scalatura e rispetto alla traslazione? 
+
+Rispetto alla scalatura (elevazione a potenza) la nuova deviazione standard diventa
+\begin{center}
+$a^2s^2x$\\
+ove $x$ è generalizzabile come l'insieme dei vecchi valori
+\end{center}
+Se prendiamo un insieme, ed eleviamo a potenza i valori all'interno, la nuova deviazione è strettamente legata al valore della deviazione standard campionaria iniziale.
+
+Rispetto alla traslazione (spostamento consistente per tutti i campioni) la deviazione standard rimane costante. Viene intuitivo che dato un insieme, se traslazione di $n$ tutti gli elementi, la deviazione tra loro rimane costante.
+
+\subsection{Mediana campionaria}
+La mediana, come abbiamo detto, rappresenta il valore centrale di un insieme dopo un riordinamento. Possiamo tuttavia estendere questo concetto con il seguente enunciato:
+Il valore della mediana campionaria è il valore che \begin{itemize}
+\item minore o uguale del $50\%$ dei dati
+\item maggiore o uguale del $50\%$ dei dati
+\end{itemize}
+Possiamo estendere il concetto di mediana manipolando il valore in \% che vogliamo, in particolare stiamo parlando di quantile. 
+\subsubsection{Quantile campionario}
+Il quantile campionario rappresenta la generalizzazione della mediana. In particolare può essere utilizzato per trovare il valore del campione che è maggiore o uguale dell'$i_{esimo}$ valore dei campioni. 
+
+Consideriamo un campione di $n = 20$ elementi, e un $q = 0,95$. Vogliamo quindi trovare il valore che è maggiore o uguale di $20 * 0,95 = 19$ elementi e minore o uguale $n - q = 1$ elementi. Se l'intersezione è rappresentata da due valori possiamo fare la somma e la divisione tra due.\\
+
+Possiamo estendere ulteriormente il concetto di quantile con i \emph{quartili} (0-4), \emph{percentili} (0-100), \emph{decili} (0-10) in base al tipo di unità di misura che vogliamo utilizzare.
+
+
 
 
 \subsection{L'algebra degli eventi}
