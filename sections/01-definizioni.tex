@@ -16,6 +16,7 @@
 
 
 
+
 \section{Un'introduzione generale}
 \begin{itemize}
 \item Popolazione: insieme di tutti gli elementi che ci interessano
@@ -71,8 +72,31 @@ Consideriamo un campione di $n = 20$ elementi, e un $q = 0,95$. Vogliamo quindi 
 Possiamo estendere ulteriormente il concetto di quantile con i \emph{quartili} (0-4), \emph{percentili} (0-100), \emph{decili} (0-10) in base al tipo di unità di misura che vogliamo utilizzare.
 
 \section{Campione a coppie}
+Consideriamo un dataset formato da due attributi per ogni campione, come andiamo a gestire questo tipo di dati?
+\begin{equation*}
+		x_1, ..., x_n e y_1, ..., y_n
+	\end{equation*}
+	L'insieme delle coppie sarà la seguente:
+\begin{equation*}
+		{(x_1, y_1), ..., (x_n, y_n)}
+	\end{equation*}
+\subsection{Il diagramma di dispersione}
+O \emph{scatter plot}, è utilizzabile per rappresentare gli elementi del campione su un piano cartesiano. %x, y -> per rappresentare sul piano 
 
+Quando \emph{tendenzialmente} i valori delle osservazioni di un valore $x$ ed un valore $y$ sono siamo nel caso di una relazione di tipo diretta. Basandoci sulla relazione tra i valori possiamo identificare una funzione lineare (o non) con la quale approssimare una ipotetica immagine, dato un valore. 
 
+\subsection{Covarianza campionaria}
+%Pagina 3.1
+Come possiamo definire matematicamente se un campione è "piccolo" o "grande", essendo queste assunzioni di carattere oggettivo? 
+
+Utilizziamo la covarianza campionaria (sempre basata sulla media campionaria) per calcolare un indice numerico per un'interpretazione oggettiva. Se la covarianza campionaria ha un valore positivo, allora la relazione è diretta, in maniera inversa se la covarianza campionaria ha un valore negativo, allora la relazione è indiretta (bisogna tuttavia accennare che la covarianza campionaria non è un indice robusto rispetto agli outlier).
+
+\subsection{Indice di correlazione lineare}
+A partire dalla covarianza campionaria è possibile ottenere l'indice di correlazione lineare (spesso denominato come r), dividendolo per le varianze campionaria dei due campioni. Il segno dell'indice di correlazione lineare è sempre uguale al segno dell'indice di covarianza campionaria. Questo indice avrà sempre un valore:
+\begin{equation*}
+		-1 \leq r \leq 1
+	\end{equation*}
+Esiste anche una formula alternativa per il calcolo del coefficiente di relazione. %3 pagina retro
 
 \section{Definizioni}
 La definizione assiomatica della probabilità riassume in pochi punti quei concetti che si possono definire intuitivi nel calcolo delle probabilità.
