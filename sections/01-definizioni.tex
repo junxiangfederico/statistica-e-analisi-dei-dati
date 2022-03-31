@@ -14,10 +14,12 @@
 %
 % This work consists of the files listed in work.txt
 
+\graphicspath{ {./images/} } 	
 
 
 
-\section{Un'introduzione generale}
+
+\section{Statistica descrittiva}
 \begin{itemize}
 \item Popolazione: insieme di tutti gli elementi che ci interessano
 \item Campione: sottoinsieme (rappresentativo) della popolazione che viene studiato\\
@@ -64,12 +66,26 @@ Il valore della mediana campionaria è il valore che \begin{itemize}
 \item maggiore o uguale del $50\%$ dei dati
 \end{itemize}
 Possiamo estendere il concetto di mediana manipolando il valore in \% che vogliamo, in particolare stiamo parlando di quantile. 
-\subsubsection{Quantile campionario}
+\subsection{Quantile campionario}
 Il quantile campionario rappresenta la generalizzazione della mediana. In particolare può essere utilizzato per trovare il valore del campione che è maggiore o uguale dell'$i_{esimo}$ valore dei campioni. 
 
 Consideriamo un campione di $n = 20$ elementi, e un $q = 0,95$. Vogliamo quindi trovare il valore che è maggiore o uguale di $20 * 0,95 = 19$ elementi e minore o uguale $n - q = 1$ elementi. Se l'intersezione è rappresentata da due valori possiamo fare la somma e la divisione tra due.\\
 
 Possiamo estendere ulteriormente il concetto di quantile con i \emph{quartili} (0-4), \emph{percentili} (0-100), \emph{decili} (0-10) in base al tipo di unità di misura che vogliamo utilizzare.
+
+\subsubsection{Box Plot} 
+E' una rappresentazione grafica che riassume le principali caratteristiche di un campione di dati. Tale rappresentazione contiene due componenti principali:
+\begin{itemize}
+\item una scatola, intesa come un rettangolo che evidenzia il primo e il terzo quartile campionario dei dati, che corrispondono alle due basi, e la mediana, indicata tramite un segmento parallelo alle basi stesse;
+\item due baﬀi, che si estendono dagli estremi della scatola fino a raggiungere il minimo e il massimo valore osservato.
+\end{itemize}
+Il box è definito dal range interquantile, dato dalla differenza fra il III e il I quantile.
+
+\subsubsection{QQ Plot} 
+E' una rappresentazione grafica che considera due campioni al fine di valutare la validità dell’ipotesi che i campioni stessi seguano una medesima distribuzione. Questi diagrammi si basano sul fatto (che non dimostreremo) che i quantili campionari rappresentano l’approssimazione di quantili teorici che, considerati tutti insieme, individuano univocamente la distribuzione dei dati.
+
+Pertanto, se due campioni hanno un’uguale distribuzione, allora estraendo da entrambi il quantile di un livello fissato si dovranno ottenere due numeri molto vicini (in quanto essi rappresentano approssimazioni diverse di uno stesso valore).
+
 
 \section{Campione a coppie}
 Consideriamo un dataset formato da due attributi per ogni campione, come andiamo a gestire questo tipo di dati?
@@ -91,12 +107,132 @@ Come possiamo definire matematicamente se un campione è "piccolo" o "grande", e
 
 Utilizziamo la covarianza campionaria (sempre basata sulla media campionaria) per calcolare un indice numerico per un'interpretazione oggettiva. Se la covarianza campionaria ha un valore positivo, allora la relazione è diretta, in maniera inversa se la covarianza campionaria ha un valore negativo, allora la relazione è indiretta (bisogna tuttavia accennare che la covarianza campionaria non è un indice robusto rispetto agli outlier).
 
+
+
 \subsection{Indice di correlazione lineare}
 A partire dalla covarianza campionaria è possibile ottenere l'indice di correlazione lineare (spesso denominato come r), dividendolo per le varianze campionaria dei due campioni. Il segno dell'indice di correlazione lineare è sempre uguale al segno dell'indice di covarianza campionaria. Questo indice avrà sempre un valore:
 \begin{equation*}
 		-1 \leq r \leq 1
 	\end{equation*}
 Esiste anche una formula alternativa per il calcolo del coefficiente di relazione. %3 pagina retro
+
+\subsection{Eterogeneità e Omogeneità}
+Gli indici di eterogeneità e omogeneità vanno a studiare la diversità dei campioni, basandosi sulle frequenze.
+\subsection{Indice di Gini (per l'eterogeneità)}
+Solitamente indicato con $I$ maiuscolo (invece che minuscolo), e viene formalizzato nel seguente modo:
+\begin{equation*}
+I = 1 - \sum_{i=1}^m f_j^2
+\end{equation*}
+Considerando una serie di valori osservabili $v_1, ... v_m$ e una serie di frequenze relative $f_1, ... f_m$.
+L'indice di Gini non è mai uguale a 1, e non è mai minore di zero. Possiamo quindi dire che:
+\begin{equation*}
+0 \leq I < 1
+\end{equation*}
+In caso di eterogeneità massima (diversità massima) l'indice di Gini è uguale a \begin{equation*}
+I = \frac{m-1}{m}
+\end{equation*}
+Nel caso di omogeneità massima (diversità minima) l'indice di Gini è uguale a 
+\begin{equation*}
+I = 0
+\end{equation*}
+L'indice di Gini normalizzato permette all'indice di Gini di includere pure il valore 1, ed rappresentato da
+\begin{equation*}
+I' = \frac{k}{k-1}I
+\end{equation*}
+Con il valore di $I'$ che può assumere quindi i seguenti valori:
+\begin{equation*}
+0 \leq I' \leq 1
+\end{equation*}
+Questo è preferibile in quanto in precedenza il valore di Gini non poteva mai assumere il valore 1 (massima eterogeneità).
+
+\subsection{Entropia}
+Rappresentata dalla lettera H maiuscola ed è definito nel seguente modo:
+\begin{equation*}
+H = \sum_{j=1}^m f_jlog\frac{1}{f_j}
+\end{equation*}
+$H$ può assumere solo valori $\geq 0 $, i casi particolari sono:
+\begin{itemize}
+\item caso di omogeneità massima con $H = 0$ sse $\forall j H_j = 0$ e $\forall_j f_j = 0$ OR $f_j = 1$ 
+\item caso di eterogeneità massima con $H = log m $ sse $ \forall j = f_j = \frac{1}{m}$ e $H = \sum_{j=1}^m f_jlog\frac{1}{m} = log m$
+\end{itemize}
+
+\subsection{Concentrazione}
+Consideriamo $n$ osservazioni $a_1, a_2, ..., a_n$, ordinate: \\
+\={a} $= \frac{1}{n} \sum_i a_i$ e $TOT = n$\={a} $= \sum_i a_i$
+\begin{itemize}
+\item La concentrazione massima è rappresentata da: $ a_1 = 0, ..., a_{n-1} = 0, a_n = n $ \={a} 
+\item La concentrazione minima è rappresentata da: $a_1 = a_2 = a_n =$ \={a}
+\item Le frequenze cumulate relative sono rappresentate da $F_i = \frac{i}{n}$
+\item Le quantità cumulate relative sono rappresentate da $Q_i = \frac{1}{tot} \sum_{k=1}^i a_k$ (fino all'i-esima osservazione)
+\end{itemize}
+Su questi indicatori possiamo dire sicuramente che:\\
+- I valori $F_i$ e $Q_i$ sono sempre compresi tra 0 e 1: $0 \leq F_i, q_i \leq 1$  \\
+- Quando le osservazioni sono ordinate in modo crescente: $Q_i \leq F_i \forall i$ \\
+- Quando $F_n$ è uguale ad uno, anche $Q_n$ è uguale ad 1: $Q_n = F_n = 1$
+
+\subsubsection{La curva di Lorentz}
+L'area compresa tra la curva dei punti (detta curva di Lorentz) ela retta di equidistribuzione (la retta a 45°) è detta area di concentrazione e può essere utilizzata come base per la definizione di appositi rapporti di concentrazione, di cui l'indice di Gini costituisce un esempio. Maggiore infatti è la concentrazione osservata, maggiore sarà tale area.
+
+\subsection{Trasformazione dei dati}
+Consideriamo una serie di osservazioni $x_1, ..., x_m$, abbiamo già visto durante il corso la traslazione e la scalatura.
+Consideriamo una funzione $g$ iniettiva:\begin{center}
+$g: x \rightarrow x'$
+\end{center}
+\subsubsection{Traslazione}
+\begin{center}
+$k > 0$ $g(x) = x + k, g(x) = x-k$
+\end{center}
+- Gli indici di media, mediana, moda, quantili vengono traslati nello stesso modo\\
+- Gli indici di varianza, la deviazione standard, range, IRQ rimangono invariati.
+\subsubsection*{Scalatura}
+\begin{center}
+$h \neq 0$ $g(x) = \frac{x}{h}$
+\end{center}
+- Gli indici di media, mediana, quantili, range di variazione, distanza interquantile e deviazione standard vengono scalati di $\frac{1}{h}$\\
+- L'indice di varianza viene scalato di $\frac{1}{h^2}$
+
+\subsubsection{Cambiamento di scala e di origine}
+Se abbiamo dei valori nell'intervallo di $[a, b]$, e volgiamo adattarli all'intervallo $[c, d]$, ovvero: 
+\begin{center}
+$(a, b) \rightarrow (c, d)$
+\end{center}
+La trasformazione che applichiamo è la seguente \begin{center}
+$\frac{x'-c}{d-c} = \frac{x-a}{b-a}$
+\end{center}
+Che può essere semplificato nel seguente modo:
+\begin{center}
+$x' = c + \frac{d-c}{b-a} (x-a)$
+\end{center}
+Consideriamo le seguenti particolare mappature:
+\begin{itemize}
+\item $(a, b) \rightarrow (0,1): x' = \frac{x-a}{b-a}$
+\item $(a, b) \rightarrow (-1, +1): x' = 2 \frac{x-a}{b-a} -1$
+\end{itemize}
+
+\subsubsection{Trasformazione logaritmica}
+Quando i valori di una variabile osservata sono molto grandi oppure molto distanziati, conviene pensare a tali valori come potenza di una data base, ragionando in termini del relativo esponente.
+\begin{center}
+$g(x) = log x$
+\end{center}
+
+\subsection{ANOVA - Analysis of variance}
+Anova, o analysis of variance viene impiegato quando dato un insieme di osservazione, è possibile suddividerli in $G$ gruppi diversi. Intuitivamente con \begin{center}
+$\sum_{i=1}^G n_i = n$
+\end{center}
+Rappresenta l'insieme di tutte le osservazioni, e:
+\begin{center}
+$x_i^g$ rappresenta l'i-esima osservazione del g-esimo gruppo
+\end{center}
+ove $g = 1, ..., G$ \hfill $n_g =$ \# osservazioni nel g-esimo gruppo
+\includegraphics[scale=0.7]{anova}
+
+E' possibile dimostrare che\begin{center}
+$SS_T = SS_W + SS_B$
+\end{center}
+
+
+
+
 
 \section{Definizioni}
 La definizione assiomatica della probabilità riassume in pochi punti quei concetti che si possono definire intuitivi nel calcolo delle probabilità.
