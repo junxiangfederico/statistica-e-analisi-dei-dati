@@ -242,17 +242,33 @@ La definizione assiomatica della probabilità riassume in pochi punti quei conce
 	Scelto un insieme $\Omega$ detto spazio campionario o degli eventi, si dice esito un elemento $\omega\in\Omega$ dell'insieme ed evento un suo sottoinsieme $E\subseteq\Omega$.
 
 \end{defin}
+\subsection*{Le proprietà dell'algebra degli eventi}
+Utilizzando questi formalismi possiamo definire anche:
+\begin{itemize}
+\item $E \cup F$ l'insieme degli eventi che sono presenti nell'insieme $E$ o nell'insieme $F$
+\item $E \cap F$ l'insieme degli eventi che sono presenti sia nell'insieme $E$ che nell'insieme $F$
+\item $\bar E$ rappresenta l'insieme degli eventi complementare, ne consegue che il complementare di $\Omega$ è $\emptyset$, ovvero: $\bar \Omega = \emptyset$
+\item Per definizione l'insieme vuoto $\emptyset$ rappresenta un evento, ed è l'evento che non può accadere e/o l'evento impossibile.
+\end{itemize}
+Bisogna infine accennare che sugli insiemi eventi valgono le proprietà di:
+\begin{itemize}
+\item Commutatività: $E \cup F = F \cup E$
+\item Associatività: $(E \cup F) \cup G = E \cup (F \cup G)$
+\item Distributività: $E \cup (F \cap G) = (E \cup F) \cap (E \cup G)$
+\item De morgan: $(E \cup F) = (\bar E \cap \bar F)$
+\end{itemize}
+
 \begin{defin}
 	Sia $\A\in2^\Omega$ una collezione di sottoinsiemi di $\Omega$. Allora $\A$ è un'algebra se
 	\begin{align*}
-		 & \bullet ~ \Omega\in \A                                                                                            \\
+		 & \bullet ~ \Omega\in \A                                                                                            		\\
 		 & \bullet ~ \forall E\subseteq\Omega\qquad E\in\A\Rightarrow \bar E\in\A \qquad\text{con }\bar E:=\Omega\setminus E \\
 		 & \bullet ~ \forall E_1,\dots E_n\in\Omega\qquad \forall i~E_i\in\A\Rightarrow \bigcup\limits_{i=1}^n E_i \in\A
 	\end{align*}
-	$\A$ è una $\sigma$-algebra su $\Omega$ se l'ultima condizione si può estendere a unioni numerabili qualsiasi.
-\end{defin}
+	$\A$ è una $\sigma$-algebra su $\Omega$ se l'ultima condizione si può estendere a unioni numerabili qualsiasi, ovvero se vale anche per $n \rightarrow \infty$.
+\end{defin} %1) L'evento certo deve essere contenuto all'interno dell'algebra\\
 
-
+%2) Se sono in grado di determinare la probabilità di un evento, devo essere in grado di determinare la probabilità anche del suo complementare
 
 
 \subsection{Assiomi di Kolmogorov}
@@ -279,7 +295,7 @@ La probabilità dello spazio campionario è $1$:
 
 
 \subsubsection{Terzo assioma}
-La probabilità dell'unione di eventi mutuamente esclusivi, cioè disgiunti (intuitivamente, il cui avvenire dell'uno esclude l'avvenire dell'altro), è uguale alla somma delle probabilità dei singoli:
+La probabilità dell'unione di eventi mutuamente esclusivi, cioè disgiunti (intuitivamente, l'avvenire dell'uno esclude l'avvenire dell'altro), è uguale alla somma delle probabilità dei singoli:
 \begin{equation*}
 	\forall E_1,\dots,E_n\in\A\qquad \forall i,j~E_i\cap E_j = \emptyset \Rightarrow P\left( \bigcup_{i=1}^n E_i \right)=\sum_{i=1}^n P(E_i)
 \end{equation*}
