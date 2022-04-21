@@ -18,7 +18,7 @@
 \section{Variabili aleatorie discrete}
 \begin{defin}
 	In uno spazio di probabilità $(\Omega, \A, p)$, una variabile aleatoria (o casuale) è una funzione\footnote{in verità, la funzione deve soddisfare il criterio: $\{\omega \mid X(\omega)\leq r\}\in\A\quad\forall r\in\R$} $X:\Omega\to \R$.
-	L'immagine di una variabile aleatoria si dice supporto e si indica con $D_X$. Ogni elemento del supporto, cioè l'immagine per $X$ di un elemento di $\Omega$, si dice specificazione. Una specificazione generica di $X$ si indica tipicamente con $x$.
+	L'immagine di una variabile aleatoria $(x_1, ... x_n)$ si dice supporto e si indica con $D_X$ (dominio). Ogni elemento del supporto, cioè l'immagine per $X$ di un elemento di $\Omega$, si dice specificazione. Una specificazione generica di $X$ si indica tipicamente con $x$.
 \end{defin}
 
 
@@ -73,7 +73,7 @@ La somma delle immagini della funzione di massa di probabilità per tutte le spe
 	\sum_i p_X (x_i) = 1
 \end{equation}
 
-La funzione di massa di probabilità di $X$ si annulla nei punti di $\R$ non appartenenti al supporto di $X$.
+La funzione di massa di probabilità di $X$ si annulla nei punti di $\R$ non appartenenti al supporto di $X$, in particolare essendo la funzione di massa di probabilità fissata sul $\R$ e non su $D$, possiamo dire che se un evento non appartiene a $D$, il suo valore sarà sicuramente uguale a 0.
 
 \begin{prop}
 	Per le variabili aleatorie discrete vale la seguente relazione tra la funzione di ripartizione e la funzione di massa di probabilità:
@@ -90,6 +90,14 @@ La funzione di massa di probabilità di $X$ si annulla nei punti di $\R$ non app
 		       & = \sum_{a\leq x} p_X(a)                  \bc{definizione \ref{def:fmassaprob}}
 	\end{align*}
 \end{proof}
+Se conosco la funzione di massa di probabilità sono in grado di calcolare della funzione di ripartizione. Andiamo a vedere tuttavia il contrario:
+A partire dalla funzione di partizione riusciamo a dire qualcosa sulla funzione di massa di probabilitòà?
+\begin{equation*}
+	F_x \rightarrow P_x
+	\end{equation*}
+$P_x(x) = P(X = x) = P(x' < x \leq x)= f_x( $ TODO
+Si, il contenuto informativo della funzione di massa di probabilità e della funzione di ripartizione è la medesima; conoscendo una possiamo calcolare l'altra.
+
 
 
 
@@ -145,6 +153,9 @@ In generale, non è detto che la sommatoria che definisce il valore atteso conve
 		\var(X) = \sigma^2_X := \ev{(X-\ev{X})^2}
 	\end{equation*}
 \end{defin}
+Ed è rappresentata dal quadrato della differenza degli scarti. Sarà talvolta tuttavia più comodo utilizzare la formula in $(5)$.
+
+
 
 \begin{defin}[deviazione standard di una variabile aleatoria]
 	La deviazione standard di una variabile aleatoria $X$ è così definita:
@@ -201,7 +212,8 @@ In generale, non è detto che la sommatoria che definisce il valore atteso conve
 		           & = a^2 \var(X)             \\
 	\end{align*}
 \end{proof}
-
+Bisogna notare che, come nella varianza campionaria, il valore $b$ è ininfluente.\\
+Jump to \ref{Multivariati}
 
 
 \subsection{Funzione di ripartizione congiunta}
@@ -279,7 +291,7 @@ Si dimostra anche la seguente equivalenza:
 
 
 
-\subsection{Multivariati}
+\subsection{Multivariati}\label{Multivariati}
 I concetti visti per coppie di variabili aleatorie si estendono a vettori aleatori (più comunemente detti variabili aleatorie multivariate, o multivariati) di dimensione arbitraria:
 
 
@@ -291,23 +303,46 @@ I concetti visti per coppie di variabili aleatorie si estendono a vettori aleato
 	\end{equation*}
 \end{defin}
 
+\subsubsection{Funzione di ripartizione congiunta}
+Date $m, n$ variabili aleatorie, la funzione di ripartizione congiunta è rappresentata da:
+\begin{center}
+$F_{(x,y)} (x,y) := P(X \leq x_i, Y \leq y)$
+\end{center}
+Il limite della funzione di ripartizione congiunta è invece rappresentata da:
+\begin{center}
+$\lim_{y\to\infty} F_{(x,y)} (x,y) =$ \\
+$\lim_{y\to\infty} P(X \leq x, Y \leq y) = $\\
+$P(X \leq x) = F_x(x)$
+\end{center}
+Ovvero la funzione di ripartizione marginale di $x$.
 
-\subsubsection{Funzione di massa di probabilità}
+\subsubsection{Funzione di massa di probabilità congiunta}
 \begin{defin}
 	Date $n$ variabili aleatorie $X_1, \dots, X_n$, la funzione di massa di probabilità $p_{X_1,\dots,X_n}:\R^n\to[0,1]$ è la funzione che associa a una $n$-upla di valori reali $x_1,\dots,x_n$ la probabilità che l'esito di $X_i$ sia uguale a $x_i$ per ogni $i$ da $1$ a $n$:
 	\begin{equation*}
 		p_{X_1,\dots,X_n}(x_1,\dots,x_n) = P(X_1=x_1,\dots,X_n=x_n)
 	\end{equation*}
 \end{defin}
+%TODO: RECHECK FROM HERE
 
+Considerando la funzione di ripartizione congiunta:
+\begin{center}
+$P_{x,y} (x,y) = P(X = x, Y = y)$
+\end{center}
+Funzione di massa di probabilità marginale rappresentata da:
+\begin{center}
+$\sum_{x} P_{x,y} (x,y) = P_x(y)$
+\end{center}
 
 \subsubsection{Indipendenza}
+Finora il concetto d'indipendenza l'abbiamo considerata solo per l'indipendenza tra eventi, vediamo ora se è possibile rappresentare questo concetto nelle variabili aleatore. L'indipendenza è imporatnte perché se verifica, ci permette di effettuare numerose fattorizzazioni significative.
 \begin{defin}
 	Variabili aleatorie $X_1,\dots,X_n$ sono indipendenti se e solo se
 	\begin{equation*}
 		\forall A_1,\dots,A_n\subseteq\R \qquad P\left(\bigland_{i=1}^n X_i\in A_i\right) = \prod_{i=1}^n P(X_i\in A_i)
 	\end{equation*}
 \end{defin}
+
 
 
 \subsubsection{Valore atteso}
