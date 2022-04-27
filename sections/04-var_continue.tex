@@ -23,25 +23,16 @@
 \begin{defin}[funzione di densità di probabilità]
 	Data una variabile aleatoria $X$, la funzione di densità di probabilità di $X$ è una funzione $f_X:\R\to\R^+$ integrabile e tale che:
 	\begin{equation*}
-		\int_{-\infty}^{+\infty} f_X(x)dx = 1
+		\int_{-\infty}^{+\infty} f_X(x)dx = P(X \in \R) = 1
 	\end{equation*}
 \end{defin}
 
-La probabilità di variabili aleatorie continue viene calcolata integrando la funzione di densità di probabilità:
+\begin{defin}[probabilità in estremi degeneri]
+La probabilità di osservare una specifica osservazione è come nelle variabili aleatore discrete:
 \begin{equation*}
-	\forall B\subseteq\R, P(X\in B)=\int_B f_X(x)dx
+	P(X = a) = \int_{a}^ {a} f_x (x) dx = 0
 \end{equation*}
-O, in un intervallo $[a,b]$:
-\begin{equation*}
-	P(a\leq X\leq b)=\int_a^b f_X(x)dx
-\end{equation*}
-che è equivalente a quella dell'intervallo $(a,b)$.
-
-La proprietà della definizione non è altro che la conseguenza del primo assioma di Kolmogorov esteso al continuo:
-\begin{equation*}
-	P(X\in\R) = \int_{-\infty}^{+\infty} f_X(x)dx = \int_\R f_X(x)dx = 1
-\end{equation*}
-
+%Quando ragioniamo in termini di una variabile aleatore continua non ha senso chiedersi il valore di un intervallo con estremi medesimi, ma solo di intervalli con estremi non degeneri.
 Per variabili aleatorie continue non ha senso calcolare la probabilità che una variabile assuma uno specifico valore, infatti:
 \begin{equation*}
 	\forall a\in\R \qquad P(X=a)=\int_a^a f_X(x)dx=0
@@ -60,6 +51,28 @@ Per il teorema fondamentale del calcolo integrale, da ciò deriva che la funzion
 \begin{equation*}
 	\frac{d}{dx}F_X(x)=f(x)
 \end{equation*}
+\end{defin}
+
+
+
+
+\begin{defin}[funzione di densità di probabilità]
+La probabilità di variabili aleatorie continue viene calcolata integrando la funzione di densità di probabilità:
+\begin{equation*}
+	\forall B\subseteq\R, P(X\in B)=\int_B f_X(x)dx
+\end{equation*}
+O, in un intervallo $[a,b]$:
+\begin{equation*}
+	P(a\leq X\leq b)=\int_a^b f_X(x)dx
+\end{equation*}
+che è equivalente a quella dell'intervallo $(a,b)$.
+
+La proprietà della definizione non è altro che la conseguenza del primo assioma di Kolmogorov esteso al continuo:
+\begin{equation*}
+	P(X\in\R) = \int_{-\infty}^{+\infty} f_X(x)dx = \int_\R f_X(x)dx = 1
+\end{equation*}
+\end{defin}
+
 
 \subsection{Valore atteso}
 \begin{defin}

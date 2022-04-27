@@ -334,8 +334,20 @@ Funzione di massa di probabilità marginale rappresentata da:
 $\sum_{x} P_{x,y} (x,y) = P_x(y)$
 \end{center}
 
-\subsubsection{Indipendenza}
-Finora il concetto d'indipendenza l'abbiamo considerata solo per l'indipendenza tra eventi, vediamo ora se è possibile rappresentare questo concetto nelle variabili aleatore. L'indipendenza è imporatnte perché se verifica, ci permette di effettuare numerose fattorizzazioni significative.
+\subsubsection{Indipendenza tra variabili aleatore congiunte}
+Finora il concetto d'indipendenza l'abbiamo considerata solo per l'indipendenza tra eventi, vediamo ora se è possibile rappresentare questo concetto nelle variabili aleatore. L'indipendenza ci permette di effettuare numerose fattorizzazioni significative.
+In particolare se $X, Y$ sono indipendenti: 
+\begin{center}
+$P(X\in A, Y\in B) = P(x\in A)P(y\in B)$
+\end{center}
+allora possiamo fattorizzare la:
+\begin{itemize}
+\item Funzione di ripartizione congiunta: $F_{(x,y)} (x,y) = F_x (x) * F_y(Y)$
+\item Funzione di massa di probabilità congiunta: $P_{(x,y)} (x,y) = p_x (x) * p_y(y)$
+\end{itemize}
+La dimostrazione è da effettuare da un senso all'altro, e poi viceversa.
+
+
 \begin{defin}
 	Variabili aleatorie $X_1,\dots,X_n$ sono indipendenti se e solo se
 	\begin{equation*}
@@ -401,7 +413,7 @@ Il seguente risultato è una generalizzazione della varianza, utile a valutare q
 
 
 
-\subsection{Covarianza}
+\subsection{Covarianza tra $X$ e $Y$}
 
 \begin{defin}
 	Date due variabili aleatorie $X$ e $Y$, la covarianza tra $X$ e $Y$ è così definita:
@@ -409,9 +421,11 @@ Il seguente risultato è una generalizzazione della varianza, utile a valutare q
 		\cov(X,Y)=\ev{(X-\mu_X)(Y-\mu_Y)}
 	\end{equation}
 \end{defin}
-\noindent
-Ovviamente la covarianza è simmetrica, ossia $\cov(X,Y)=\cov(Y,X)$.
 
+\noindent
+Ovviamente la covarianza è simmetrica, ossia $\cov(X,Y)=\cov(Y,X)$.\\
+\footnotesize{}ove $\mu$ è la media campionaria
+\normalsize
 
 \subsubsection{Proprietà}
 La seguente è una definizione equivalente per la covarianza tra due variabili aleatorie:
@@ -446,6 +460,7 @@ La seguente è una definizione equivalente per la covarianza tra due variabili a
 \end{proof}
 
 \begin{prop} \label{prop:covsum0}
+%Rispetto alla traslazione
 	\begin{equation*}
 		\cov(X+Y,Z)=\cov(X,Z)+\cov(Y,Z)
 	\end{equation*}
@@ -554,6 +569,14 @@ Generalizzando:
 	\end{align*}
 \end{proof}
 
+\begin{prop}
+	Date due variabili aleatorie $X, Y$:
+	\begin{align*}
+		\var(X - Y) = \var(X + (-Y)) & = \var(X) + \var(-Y) \\
+			& = \var(X) + \var(Y) \\
+	\end{align*}
+\end{prop}
+
 
 \begin{prop}
 	Date funzioni indicatrici di eventi, o in generale variabili aleatorie bernoulliane (ossia di specificazione binaria):
@@ -561,6 +584,7 @@ Generalizzando:
 		\cov(X,Y)>0 \Rightarrow P(X=1\mid Y=1)>P(X=1)
 	\end{equation*}
 \end{prop}
+
 \begin{proof}
 	\begin{align*}
 		\cov(X,Y) & = \ev{XY} - \ev{X}\ev{Y}  \\
@@ -580,6 +604,10 @@ Generalizzando:
 \begin{defin}
 	Il coefficiente di correlazione $\rho$ è un indice di correlazione tra variabili aleatorie discrete ed è così definito:
 	\begin{equation*}
-		\rho= \frac{\cov(X,Y)}{\sigma_X\sigma_Y}
+		\rho_{x,y}= \frac{\cov(X,Y)}{\sigma_X\sigma_Y}
+	\end{equation*}
+	Si può notare che se $x, y$ sono indipendenti, allora $\rho = 0$. Inoltre il valore di $\rho$ è sempre compreso tra -1 e 1.
+	\begin{equation*}
+		-1 \leq \rho_{x, y} \leq 1
 	\end{equation*}
 \end{defin}
