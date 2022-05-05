@@ -16,7 +16,7 @@
 
 
 % TODO: valutare le funzioni (ripartizione e massa) nel dominio negativo
-\section{Modelli}
+\section{Modelli di distribuzione}
 I modelli di distribuzione consistono in risultati notevoli corrispondenti a variabili aleatorie che rispettano determinate definizioni ricorrenti.
 
 % TODO: bisognerebbe aggiungere anche il supporto, tuttavia non riesco a sistemare la geometria della pagina in un modo soddisfacente che non causi warning.
@@ -49,7 +49,9 @@ Una variabile aleatoria bernoulliana di probabilità di successo ($X=1$) $p$ si 
 \begin{equation*}
 	X\sim B(p)
 \end{equation*}
-
+mentre il fallimento è rappresentato da $(X = 0)$\\
+\footnotesize{Brutalmente: quando gli esiti sono binari: il fallimento è rappresentato da 0 ed il successo da 1, stiamo parlando di un modello di bernoulli)
+\normalsize
 
 \subsubsection{Funzione di massa di probabilità}
 La funzione di massa di probabilità di una variabile aleatoria bernoulliana è
@@ -180,6 +182,11 @@ Banalmente, usando la definizione:
 \end{equation}
 
 
+\begin{equation*}
+	\ev{X^2} = \sum_{i=1}^{n}\frac{i^2}{n} = \frac{1}{n}\sum_{i=1}^{n}i^2=\frac{(n+1)(2n+1)}{6}
+\end{equation*}
+
+
 \subsubsection{Varianza}
 Usando la definizione equivalente di varianza e quanto appena calcolato:
 \begin{align*}
@@ -211,7 +218,7 @@ La funzione di massa di probabilità in $i$ è uguale alla probabilità di insuc
 
 Come sempre si aggiunge una funzione indicatrice per aggiustare il dominio di $F_X$:
 \begin{equation} \label{eq:geommasprob}
-	F_X(i) = P(X=i) = (1-p)^ip ~ I_\N (i)
+	F_X(i) = P(X=i) = (1-p)^ip ~ I_{N\cup\{0\}} (i)
 \end{equation}
 
 La somma delle immagini della funzione di massa di probabilità converge, come dovrebbe, a $1$:
@@ -273,6 +280,7 @@ Questo risultato è in realtà banale se si applica il concetto semantico alla v
 \begin{equation*}
 	F_X(x) = P(X\leq x) = 1-P(X>x) = 1-(1-p)^{\floor{x}+1}
 \end{equation*}
+
 
 \subsubsection{Assenza di memoria} \label{geom-assmem}
 Come si può intuire, la probabilità di costante insuccesso all'$i+j$-esimo esperimento non è condizionata dalla probabilità di costante insuccesso all'$i$-esimo. Questo risultato prende il nome di assenza di memoria.
@@ -422,7 +430,7 @@ Per $N+M\to+\infty$ il modello si semplifica in un modello binomiale:
 \subsection{Modello uniforme continuo}
 Il modello uniforme continuo estende al continuo i concetti visti alla sezione \ref{subsec:unifdisc} per il modello uniforme discreto e viene determinato da un intervallo equivalentemente aperto o chiuso:
 \begin{equation*}
-	X \sim U([a,b])
+	X \sim U([a,b]) \quad a < b \quad D_x = [a,b]
 \end{equation*}
 
 
@@ -451,6 +459,9 @@ Per definizione la funzione di ripartizione è la funzione integrale della funzi
 	       & = \frac{1}{b-a} \eval{u}{a}{x} \\
 	       & = \frac{x-a}{b-a}
 \end{align*}
+\footnotesize{}
+$f_X(u)du$ perché la variabile non può essere uguale\\
+\normalsize{}
 
 Come sempre funzioni indicatrici aggiustano il risultato per punti non appartenenti all'intervallo:
 \begin{equation*}
@@ -467,6 +478,7 @@ Applicando la definizione:
 	       & = \frac{1}{b-a} \cdot \frac{b^2-a^2}{2}    \\
 	       & = \frac{b+a}{2}
 \end{align*}
+Che deriva dalla somma tra la area del rettangolo e l'area del triangolo nel grafico, che corrisponde anche al punto medio.
 
 
 \subsubsection{Varianza}

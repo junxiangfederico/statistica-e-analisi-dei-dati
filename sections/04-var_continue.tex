@@ -47,11 +47,19 @@ Calcolando l'integrale della funzione di densità in un intervallo del tipo $(-\
 \begin{equation*}
 	\int_{-\infty}^a f_X(x)dx = P(X\leq a) = F_X(a) \\
 \end{equation*}
+
+%Possiamo riscrivere l'uguaglianza nel seguente modo:
+%\begin{equation*}
+%	F_X(x) = P(X \leq x) = \int_{-\infty}^x f_x(y) dy
+%\end{equation*}
+
+
 Per il teorema fondamentale del calcolo integrale, da ciò deriva che la funzione di densità di probabilità è la derivata della funzione di ripartizione:
 \begin{equation*}
 	\frac{d}{dx}F_X(x)=f(x)
 \end{equation*}
 \end{defin}
+
 
 
 
@@ -82,6 +90,11 @@ La proprietà della definizione non è altro che la conseguenza del primo assiom
 	\end{equation*}
 \end{defin}
 
+La varianza invece è così definita:
+\begin{equation*}
+	\var(x) = \ev{((x- \mu)^2) }= \int_{-\infty}^{+\infty} (x-\mu)^2 f_x(x)dx
+\end{equation*}
+
 \begin{prop} \label{prop:valatnonneg}
 	Per variabili aleatorie che non assumono specificazioni negative:
 	\begin{equation*}
@@ -94,6 +107,7 @@ La proprietà della definizione non è altro che la conseguenza del primo assiom
 \end{prop}
 
 \subsection{Disuguaglianza di Markov}
+Questa disuguaglianza permette di stabilire un limite superiore al valore di probabilità dalla sola conoscenza del valore atteso $\ev{x}$ a condizione che la variabile casuale sia definita non negativa.
 \begin{teor}[Disuguaglianza di Markov] \label{teor:markov}
 	Sia $X$ una variabile aleatoria non negativa. Allora per ogni $a$ reale positivo:
 	\begin{equation*}
@@ -104,7 +118,7 @@ La proprietà della definizione non è altro che la conseguenza del primo assiom
 	\begin{align*}
 		\ev{X} & = \int_{-\infty}^{+\infty} x f_X(x) dx                                      \\
 		       & = \int_0^{+\infty} x f_X(x) dx                  \bc{variabile non negativa} \\
-		       & = \underbrace{\int_0^a x f_X(x) dx}_{\geq 0} + \int_a^{+\infty} x f_X(x) dx \\
+		       & = \underbrace{\int_0^a x f_X(x) dx}_{\geq 0} + \underbrace{\int_a^{+\infty} x f_X(x) dx}_{x \geq a} \\
 		       & \geq \int_a^{+\infty} x f_X(x) dx                                           \\
 		       & \geq \int_a^{+\infty} a f_X(x) dx                  \bc{in quanto $x\geq a$} \\
 		       & = a \int_a^{+\infty} f_X(x) dx                                              \\
@@ -114,6 +128,10 @@ La proprietà della definizione non è altro che la conseguenza del primo assiom
 	\begin{equation*}
 		\frac{\ev{X}}{a}\geq P(X\geq a)
 	\end{equation*}
+	da ciò possiamo anche dire:
+	\begin{equation*}
+		P(X < a) = 1 - P(X \geq a) \geq 1- \frac{\ev{x}}{a}
+		\end{equation*}
 \end{proof}
 
 
@@ -133,8 +151,9 @@ La disuguaglianza di Tchebyshev dà una limitazione superiore alla probabilità 
 	Passando alle probabilità:
 	\begin{align*}
 		P(\abs{X-\mu}\geq r) & = P((X-\mu)^2 \geq r^2)                                       \\
-		                     & \leq \frac{\ev{(X-\mu)^2}}{r^2} \bc{disuguaglianza di Markov} \\
-		                     & =\frac{\var(X)}{r^2}
+		                     & \leq \frac{\ev{(X-\mu)^2}}{r^2} \bc{per disuguaglianza di Markov} \\
+		                     & =\frac{\var(X)}{r^2} 					\\
+		                     & = \frac{\ev{(x-\mu)^2}}{r^2} = \frac{\sigma^2}{r^2}
 	\end{align*}
 	Ergo:
 	\begin{equation*}
