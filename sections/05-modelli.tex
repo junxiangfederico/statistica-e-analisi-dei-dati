@@ -356,6 +356,10 @@ Per $n\to+\infty$:
 	       & \to \frac{\lambda^i}{i!} e^{-\lambda}
 \end{align*}
 
+\subsection{Riproducibilità}
+\begin{center}
+$x_1 \sim P (\lambda_1), x_2 \sim P(\lambda_2) \quad \rightarrow \quad x_1 + x_2 \sim P(\lambda_1 + \lambda_2)$
+\end{center}
 
 
 \subsection{Modello ipergeometrico}
@@ -363,8 +367,9 @@ Il modello ipergeometrico descrive il classico problema dell'urna. Dati $N$ ogge
 \begin{equation*}
 	X\sim ?(?)
 \end{equation*}
-
 Il modello è valido solo se $P(X=0)=0$.
+
+%todo: what is this
 
 
 \subsubsection{Funzione di massa di probabilità}
@@ -584,6 +589,27 @@ Da cui
 	       & = \frac{P(X>s+t\cap X>t)}{P(X>t)} \\
 	       & = P(X>s+t\mid X>t)
 \end{align*}
+Le due espressioni coincidono logicamente. Possiamo estendere questa notazione:
+\begin{align*}
+P(x < x ) & = 1 - P(X \leq x ) = \\
+		 & =1 - F_x = e ^{-\lambda x}
+\end{align*}
+
+
+\subsubsection{Corollario}
+Consideriamo un modello esponenziale
+\begin{center}
+$X \sim E(\lambda) \quad Y := \alpha X \quad \alpha > 0$
+\end{center}
+\begin{align*}
+F_y(x) &= P(Y \leq x) = P(\alpha X \leq x) = P(x \leq \frac{x}{\alpha})\\
+	  & F_x(\frac{x}{\alpha}) = 1 - e^{-\lambda \frac{x}{\alpha}} = 1 - e ^{-\frac{\lambda}{\alpha}x}\\
+	  & \lambda ' = \frac{\lambda}{\alpha} \quad F_y(x) = 1- e^{-\lambda ' x}\\
+	  & Y \sim E(\frac{\lambda}{\alpha})
+\end{align*}
+
+
+
 
 
 \subsection{Risultati notevoli sui modelli}
@@ -676,8 +702,25 @@ Da cui
 	\end{align*}
 \end{proof}
 
+\subsection{Sistemi in serie}
+I modelli di sistemi in serie rappresentano una serie di componenti che lavorano in maniera sequenziale tra loro, l'output di un modello rappresenta l'input del prossimo, fino al terminarsi della catena.
+\begin{center}
+$\rightarrow 1 \rightarrow 2 \rightarrow ... \rightarrow n \rightarrow$
+\end{center}
+Consideriamo 
+\begin{align*}
+x_i & = \text{istante in cui si rompe il componente}\quad  i \sim E(\lambda_i)\\
+y_i & = \text{istante in cui il sistema smette di funzionare} \\
+   & = min x_i  \sim E(\sum_{}{} \lambda_i)
+\end{align*}
+%Il modello esponenziale descrive bene questo modello (per motivi definiti più avanti
 
-\subsection{Modello gaussiano}
+
+
+
+
+
+\subsection{Modello gaussiano (o normale)}
 Una variabile $X$ di modello gaussiano (o normale), è una variabile aleatoria continua definita da due parametri:
 \begin{equation*}
 	X\sim N(\mu, \sigma)\qquad \mu\in\R,\sigma\in\R^+
