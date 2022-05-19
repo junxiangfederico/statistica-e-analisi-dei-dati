@@ -747,10 +747,10 @@ Si può dimostrare che l'area sottesa alla funzione di densità è $1$:
 	\int_{-\infty}^{+\infty} \frac{1}{\sqrt{2\pi}~\sigma} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2} dx = 1
 \end{equation*}
 
-
 \subsubsection{Funzione di ripartizione}
+La funzione di ripartizione è una funzione liscia (integrabile infinite volte) e non possiede una forma analitica. 
 \begin{equation*}
-	F_X(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}~\sigma} e^{-\frac{1}{2}\left(\frac{y-\mu}{\sigma}\right)^2} dy
+	F_X(x) = P( X \leq x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}~\sigma} e^{-\frac{1}{2}\left(\frac{y-\mu}{\sigma}\right)^2} dy
 \end{equation*}
 
 
@@ -795,6 +795,23 @@ Le variabili normali standard si indicano solitamente con $Z$, mentre le relativ
 \begin{equation*}
 	X\sim N(\mu,\sigma) \Rightarrow Y\sim N(a\mu+b,a\sigma)
 \end{equation*}
+\begin{itemize}
+\item Il valore atteso: $\ev{Y} = \ev{aX + b}  = a \ev{X} + b = a\mu + b$
+\item La varianza: $var(Y ) = Var(ax + b) = a^2 var(x) = a^2\sigma^2$
+\end{itemize}
+
+\paragraph{Standardizzazione}
+Consideriamo nuovamente una variabile aleatoria $X \sim N(\mu, \sigma)$ con:
+\begin{equation*}
+Z = \frac{x-\mu}{\sigma} = \frac{x}{\sigma} - \frac{\mu}{\sigma} \sim N(0, 1)
+\end{equation*}
+Con $S = \frac{R-\mu}{\sigma}$
+\begin{itemize}
+\item $\ev{R} = \mu \rightarrow \ev{s} = 0$
+\item $var(R) = \sigma^2 \rightarrow var(S) = 1$ 
+\end{itemize}
+
+
 
 \paragraph{Riproducibilità} Date variabili $X_1,\dots,X_n$ gaussiane indipendenti tali che $\forall i X_i\sim N(\mu_i,\sigma_i)$:
 \begin{equation*}
@@ -810,9 +827,49 @@ Anche il modello binomiale e l'ipergeometrico, ad esempio, godono della propriet
 	       & = F_Z\left(\frac{x-\mu}{\sigma}\right)                       \\
 	       & = \Phi\left(\frac{x-\mu}{\sigma}\right)
 \end{align*}
+Questa tecnica può essere applicata anche per calcolare la probabilità tra due estremi:
+\begin{align*}
+P(\alpha \leq x \leq \beta) & = P(\frac{\alpha - \mu}{\sigma} \leq \frac{x - \mu}{\sigma} \leq \frac{\beta - \mu}{\sigma})  = \\
+& = P( \frac{\alpha - \mu}{\sigma} \leq Z \leq \frac{\beta - \mu}{\sigma}) =\\
+& = \phi(\frac{\beta - \mu}{\sigma} )- \phi (\frac{\alpha - \mu}{\sigma} )
+\end{align*}
 
 
-\subsection{Risultati notevoli sui modelli}
+\subsubsection{Variabili multiple}
+Consideriamo un modello con due variabili aleatorie $X_1, X_2$ indipendenti:
+\begin{center}
+$X_1 \sim N(\mu_1, \sigma_1)$ \quad $X_2 \sim N(\mu_2, \sigma_2)$
+\end{center}
+Il modello sarà come segue:
+\begin{center}
+$X_1 + X_2 \sim N( \mu_1 + \mu_2 , \sqrt{\sigma_1^2 + \sigma_2^2})$
+\end{center}
+\begin{itemize}
+% controllare il valore atteso
+\item $\ev{X_1 + X_2} =  \mu_1 + \mu_2$
+\item $var(X_1 + X_2) = var(X_1) + var(X_2) = \sigma_1^2 + \sigma_2^2$
+\end{itemize}
+
+%\subsection{Risultati notevoli sui modelli}
+
+
+
+
+\subsection{Teorema centrale del limite}
+\begin{teor}
+	Siano $X_1,\dots,X_n$ variabili aleatorie indipendenti e identicamente distribuite, ossia tali che $\forall i\quad\ev{X_i}=\mu\land\var(X_i)=\sigma^2$. Allora per $n$ grandi le variabili sono distribuite in modo approssimativamente\footnote{Il simbolo $\modsim$ indica l'appartenenza approssimativa a un modello.} normale:
+	\begin{gather*}
+		\sum_{i=1}^n X_i \modsim N(n\mu,\sqrt{n}\sigma) \\
+	\end{gather*}
+	O, standardizzando
+	\begin{equation*}
+		\frac{\sum_{i=1}^n X_i-n\mu}{\sqrt{n}\sigma} \modsim N(0,1)
+	\end{equation*}
+	Ovvero sia:
+	\begin{equation*}
+		\lim_{n\to+\infty} P\left(\frac{\sum_{i=1}^n X_i-n\mu}{\sqrt{n}\sigma}\leq x\right) = \Phi(x)
+	\end{equation*}
+\end{teor}
 
 \subsection{Indici di variabili aleatorie}
 \begin{defin}
@@ -826,24 +883,16 @@ Anche il modello binomiale e l'ipergeometrico, ad esempio, godono della propriet
 % TODO: questa definizione va sistemata: una specificazione come quella descritta non è unica: come ci si comporta?
 \begin{defin}
 	Data una variabile aleatoria $X$, il quantile di livello $q\in[0,1]$ di $X$ è la specificazione $x_q\in\R$ tale che $P(X\leq x_q) = q$.
+
+	\begin{center}
+		$P(X \leq X_q) = q$\\
+		$F_x (X_q) = q$ \\
+		$X_q = F_x ^{-1}(F_x(X_q)) = F_x^{-1}(q)$
+		
+		\end{center}
 \end{defin}
 
 
-\subsection{Teorema centrale del limite}
-\begin{teor}
-	Siano $X_1,\dots,X_n$ variabili aleatorie indipendenti e identicamente distribuite, ossia tali che $\forall i\quad\ev{X_i}=\mu\land\var(X_i)=\sigma^2$. Allora per $n$ grandi le variabili sono distribuite in modo approssimativamente\footnote{Il simbolo $\modsim$ indica l'appartenenza approssimativa a un modello.} normale:
-	\begin{gather*}
-		\sum_{i=1}^n X_i \modsim N(n\mu,\sqrt{n}\sigma) \\
-	\end{gather*}
-	O, standardizzando
-	\begin{equation*}
-		\frac{\sum_{i=1}^n X_i-n\mu}{\sqrt{n}\sigma} \modsim N(0,1)
-	\end{equation*}
-	Ovverosia:
-	\begin{equation*}
-		\lim_{n\to+\infty} P\left(\frac{\sum_{i=1}^n X_i-n\mu}{\sqrt{n}\sigma}\leq x\right) = \Phi(x)
-	\end{equation*}
-\end{teor}
 
 \subsubsection{Funzione cumulativa empirica}
 La funzione cumulativa empirica dà una misura del numero di osservazioni che superano un dato input:
