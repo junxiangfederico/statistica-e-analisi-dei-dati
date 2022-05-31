@@ -22,14 +22,17 @@
 \section{Statistica descrittiva}
 \begin{itemize}
 \item Popolazione: insieme di tutti gli elementi che ci interessano
-\item Campione: sottoinsieme (rappresentativo) della popolazione che viene studiato\\
+\item Campione: sottoinsieme (rappresentativo) della popolazione che viene studiato:\\
 		- Un campione casuale è considerato se i membri sono i scelti in modo tale che tutte le possibili scelte dei $k$ membri siano equiprobabili\\
 		- Un campione casuale è chiamato stratificato se sono necessarie più informazioni iniziali
 \item Frequenza assoluta ($f$): numero di occorrenza di un dato valore in un esperimento
 \item Frequenza relativa: $\frac{f}{n}$ ove $f$ rappresenta la frequenza, ed $n$ il numero totale
-\item Tabelle e grafici: pochi valori distinti alcuni esempi sono il grafico a bastoncini, il grafico poligonale, il grafico a barre
-\item Istogrammi: tanti dati, li suddivido in range distinti, alcuni esempi sono l'istogramma delle frequenze e l'istogramma delle frequenze relative
 \end{itemize}
+
+\subsection{Tabelle e grafici}
+Quando i valori distinti sono pochi è giusto applicabile grafici a bastoncini, grafici poligonali ed il grafico a barre. Quando il numero di valori è alto, li suddividiamo in range distinti e li organizziamo sugli istogrammi di frequenze, o istogrammi di frequenze relative.
+
+\subsection{Media, mediana, moda}
 Una serie di analisi preliminari che possiamo fare su un campione sono la \emph{media, mediana, e la moda}, che chiameremo \emph{campionaria}. 
 
 Riguardo al nostro campione diciamo che $n$ rappresenta la dimensione, o taglia del campione; mentre ${\{x_1, ..., x_n\}}$ rappresentano gli insiemi del nostro campione.
@@ -43,21 +46,44 @@ La mediana campionaria è uno stimatore "robusto" rispetto agli outlier; viene c
 
 \subsection{Concetto di dispersione e varianza campionaria}
 Consideriamo due insiemi con una dispersione di carattere molto diverso, ad esempio\begin{center}
-$A = \{1, 2, 5, 6, 7\}$, \={a}  = 4\\
-$B = \{-40, 0, 5, 20, 35\}$, \={b}  = 4\\
+$A = \{1, 2, 5, 6, 7\}$ \quad \={a}  = 4\\
+$B = \{-40, 0, 5, 20, 35\}$ \quad \={b}  = 4\\
 \end{center}
-E' verificabile che la media campionaria di questi insiemi è la medesima, ma hanno un carattere di dispersione molto differente. Come possiamo rappresentare questo concetto? Con la \textbf{varianza campionaria} rappresentato dalla dicitura $s^2$. %manca la formula qua (09/03_1)
+E' verificabile che la media campionaria di questi insiemi è la medesima, ma hanno un carattere di dispersione molto differente. Come possiamo rappresentare questo concetto? 
+Un modo preliminare è quello di considerare gli scarti dei valori, rispetto ad un valore centrale che può essere ad esempio la media campionaria. 
 
-Di conseguenza calcolando la radice ricaviamo: $s = \sqrt{s^2}$ chiamata \textbf{deviazione standard campionaria}. Come viene influenzata la deviazione standard campionaria rispetto alla scalatura e rispetto alla traslazione? 
+Viene tuttavia intuitivo che che la somma degli scarti risulta sempre uguale a 0, sommando e sottraendo gli scarti totali non ci restituisce niente, possiamo tuttavia considerare gli scarti indipendentemente dal segno. Quello che utilizziamo è quindi il valore assoluto degli scarti, consideriamo quindi il quadrato (gestire il valore assoluto è difficile).
 
-Rispetto alla scalatura (elevazione a potenza) la nuova deviazione standard diventa
+\subsubsection{La varianza campionaria}
+
+Introduciamo quindi la \textbf{varianza campionaria} rappresentato dalla dicitura $s^2$. 
+ed è definita come:
+\begin{equation*}
+s^2 = \frac{\sum_{i=1}^n (x_i - \text{\={x}}) ^2 }{n-1}
+\end{equation*}
+%manca la formula qua (09/03_1)
+
+Di conseguenza calcolando la radice ricaviamo: $s = \sqrt{s^2}$ chiamata \textbf{deviazione standard campionaria}. 
+\subsubsection{Scalatura e traslazione}
+Come viene influenzata la deviazione standard campionaria rispetto alla scalatura e rispetto alla traslazione? 
+
+Se moltiplichiamo ciascun valore per una costante $c$, per ottenere un nuovo insieme
+\begin{equation*}
+y_i = cx_i \qquad i = 1, .. , n
+\end{equation*}
+La varianza campionaria dei valori $y$ è uguale alla varianza campionaria dei valori $x$ moltiplicata per $c^2$ ovvero:
+\begin{equation*}
+s^2_y = c^2s^2_x
+\end{equation*}
+
+Rispetto alla \textbf{scalatura (elevamento a potenza)} la nuova deviazione standard diventa
 \begin{center}
 $a^2s^2x$\\
 ove $x$ è generalizzabile come l'insieme dei vecchi valori
 \end{center}
 Se prendiamo un insieme, ed eleviamo a potenza i valori all'interno, la nuova deviazione è strettamente legata al valore della deviazione standard campionaria iniziale.
 
-Rispetto alla traslazione (spostamento consistente per tutti i campioni) la deviazione standard rimane costante. Viene intuitivo che dato un insieme, se traslazione di $n$ tutti gli elementi, la deviazione tra loro rimane costante.
+Rispetto alla \textbf{traslazione (spostamento consistente per tutti i campioni)} la deviazione standard rimane costante. Viene intuitivo che dato un insieme, se traslazione di $n$ tutti gli elementi, la deviazione tra loro rimane costante.
 
 \subsection{Mediana campionaria}
 La mediana, come abbiamo detto, rappresenta il valore centrale di un insieme dopo un riordinamento. Possiamo tuttavia estendere questo concetto con il seguente enunciato:
@@ -82,15 +108,26 @@ E' una rappresentazione grafica che riassume le principali caratteristiche di un
 Il box è definito dal range interquantile, dato dalla differenza fra il III e il I quantile.
 
 \subsubsection{QQ Plot} 
+
 E' una rappresentazione grafica che considera due campioni al fine di valutare la validità dell’ipotesi che i campioni stessi seguano una medesima distribuzione. Questi diagrammi si basano sul fatto (che non dimostreremo) che i quantili campionari rappresentano l’approssimazione di quantili teorici che, considerati tutti insieme, individuano univocamente la distribuzione dei dati.
 
 Pertanto, se due campioni hanno un’uguale distribuzione, allora estraendo da entrambi il quantile di un livello fissato si dovranno ottenere due numeri molto vicini (in quanto essi rappresentano approssimazioni diverse di uno stesso valore).
 
 
+\subsubsection{Gli insiemi di dati normali e la regola empirica}
+Molti grandi insiemi hanno istogrammi dall'aspetto simile, sono infatti simmetrici al punto con frequenza massima, e assumono una forma a campana intorno. Questi insiemi sono chiamati \emph{normali}. Rispetto agli insiemi di dati normali con media campionaria \={x} e deviazione standard campionaria $s$ possiamo dire:
+\begin{enumerate}
+\item approssimativamente 68\% delle osservazioni rientrano nell'intervallo \={x}$ \pm s$
+\item approssimativamente 95\% delle osservazioni rientrano nell'intervallo \={x}$ \pm 2s$
+\item approssimativamente 99.7\% delle osservazioni rientrano nell'intervallo \={x}$ \pm 3s$
+\end{enumerate}
+
+
+
 \section{Campione a coppie}
 Consideriamo un dataset formato da due attributi per ogni campione, come andiamo a gestire questo tipo di dati?
 \begin{equation*}
-		x_1, ..., x_n e y_1, ..., y_n
+		x_1, ..., x_n \quad e  \quad y_1, ..., y_n
 	\end{equation*}
 	L'insieme delle coppie sarà la seguente:
 \begin{equation*}
@@ -107,14 +144,22 @@ Come possiamo definire matematicamente se un campione è "piccolo" o "grande", e
 
 Utilizziamo la covarianza campionaria (sempre basata sulla media campionaria) per calcolare un indice numerico per un'interpretazione oggettiva. Se la covarianza campionaria ha un valore positivo, allora la relazione è diretta, in maniera inversa se la covarianza campionaria ha un valore negativo, allora la relazione è indiretta (bisogna tuttavia accennare che la covarianza campionaria non è un indice robusto rispetto agli outlier).
 
-
-
 \subsection{Indice di correlazione lineare}
 A partire dalla covarianza campionaria è possibile ottenere l'indice di correlazione lineare (spesso denominato come r), dividendolo per le varianze campionaria dei due campioni. Il segno dell'indice di correlazione lineare è sempre uguale al segno dell'indice di covarianza campionaria. Questo indice avrà sempre un valore:
 \begin{equation*}
 		-1 \leq r \leq 1
 	\end{equation*}
-Esiste anche una formula alternativa per il calcolo del coefficiente di relazione. %3 pagina retro
+	e la sua formula è :
+	\begin{align*}
+	r & = \frac{	\sum_{i=1}^{n}	 (x_i - \text{\={x}}	)(y_i - \text{ \={y}}	)}{(n-1)s_xs_y}\\
+		& = \frac{	\sum_{i=1}^{n} 	(x_i - \text{\={x}}	)(y_i - \text{ \={y}}	)}  {\sqrt{ \sum_{i=1}^n (x_i - \text{\={x}}	)^2 \sum_{i=1}^n (y_i - \text{\={y}})^2  }}
+	\end{align*}
+	Quando $r > 0$ si dice che i dati sono correlati positivamente, invece quando $r < 0$ si dice che sono correlati negativamente.
+Esiste anche una formula alternativa per il calcolo del coefficiente di relazione ovvero: %3 pagina retro
+
+\begin{equation*}
+r = \frac{	\sum_{i=1}^n x_iy_i - n \text{\={x}\={y}}}{\sqrt{(\sum_{i=1}^n x_i^2 - n\text{\={x}}^2)(\sum_{i=1}^n y_i^2 - n\text{\={y}}^2)}}
+\end{equation*}
 
 \subsection{Eterogeneità e Omogeneità}
 Gli indici di eterogeneità e omogeneità vanno a studiare la diversità dei campioni, basandosi sulle frequenze.
@@ -129,7 +174,7 @@ L'indice di Gini non è mai uguale a 1, e non è mai minore di zero. Possiamo qu
 0 \leq I < 1
 \end{equation*}
 In caso di eterogeneità massima (diversità massima) l'indice di Gini è uguale a \begin{equation*}
-I = \frac{m-1}{m}
+I = 1
 \end{equation*}
 Nel caso di omogeneità massima (diversità minima) l'indice di Gini è uguale a 
 \begin{equation*}
@@ -148,17 +193,20 @@ Questo è preferibile in quanto in precedenza il valore di Gini non poteva mai a
 \subsection{Entropia}
 Rappresentata dalla lettera H maiuscola ed è definito nel seguente modo:
 \begin{equation*}
-H = \sum_{j=1}^m f_jlog\frac{1}{f_j}
+H = \sum_{j=1}^m f_jlog\frac{1}{f_j} = - \sum_{i=1}^s f_i log f_i
 \end{equation*}
 $H$ può assumere solo valori $\geq 0 $, i casi particolari sono:
 \begin{itemize}
-\item caso di omogeneità massima con $H = 0$ sse $\forall j H_j = 0$ e $\forall_j f_j = 0$ OR $f_j = 1$ 
-\item caso di eterogeneità massima con $H = log m $ sse $ \forall j = f_j = \frac{1}{m}$ e $H = \sum_{j=1}^m f_jlog\frac{1}{m} = log m$
+\item caso di omogeneità massima con $H = 0$ %sse $\forall j H_j = 0$ e $\forall_j f_j = 0$ OR $f_j = 1$ 
+\item caso di eterogeneità massima con $H = log m $ %sse $ \forall j = f_j = \frac{1}{m}$ e $H = \sum_{j=1}^m f_jlog\frac{1}{m} = log m$
 \end{itemize}
 
 \subsection{Concentrazione}
-Consideriamo $n$ osservazioni $a_1, a_2, ..., a_n$, ordinate: \\
-\={a} $= \frac{1}{n} \sum_i a_i$ e $TOT = n$\={a} $= \sum_i a_i$
+In presenza di variabili che rappresentano beni condivisibili in una popolazione, è possibile chiedersi quanto concentrato il bene sia sulla popolazione.
+Consideriamo $n$ osservazioni $a_1, a_2, ..., a_n$, ordinate: 
+\begin{equation*}
+\text{Valore medio: \={a}} = \frac{1}{n} \sum_i a_i \quad e \quad TOT = n\text{\={a}} = \sum_i a_i
+\end{equation*}
 \begin{itemize}
 \item La concentrazione massima è rappresentata da: $ a_1 = 0, ..., a_{n-1} = 0, a_n = n $ \={a} 
 \item La concentrazione minima è rappresentata da: $a_1 = a_2 = a_n =$ \={a}
@@ -171,7 +219,7 @@ Su questi indicatori possiamo dire sicuramente che:\\
 - Quando $F_n$ è uguale ad uno, anche $Q_n$ è uguale ad 1: $Q_n = F_n = 1$
 
 \subsubsection{La curva di Lorentz}
-L'area compresa tra la curva dei punti (detta curva di Lorentz) ela retta di equidistribuzione (la retta a 45°) è detta area di concentrazione e può essere utilizzata come base per la definizione di appositi rapporti di concentrazione, di cui l'indice di Gini costituisce un esempio. Maggiore infatti è la concentrazione osservata, maggiore sarà tale area.
+L'area compresa tra la curva dei punti (detta curva di Lorentz) e la retta di equidistribuzione (la retta a 45°) è detta area di concentrazione e può essere utilizzata come base per la definizione di appositi rapporti di concentrazione, di cui l'indice di Gini costituisce un esempio. Maggiore infatti è la concentrazione osservata, maggiore sarà tale area.
 
 \subsection{Trasformazione dei dati}
 Consideriamo una serie di osservazioni $x_1, ..., x_m$, abbiamo già visto durante il corso la traslazione e la scalatura.
@@ -182,17 +230,17 @@ $g: x \rightarrow x'$
 \begin{center}
 $k > 0$ $g(x) = x + k, g(x) = x-k$
 \end{center}
-- Gli indici di media, mediana, moda, quantili vengono traslati nello stesso modo\\
-- Gli indici di varianza, la deviazione standard, range, IRQ rimangono invariati.
-\subsubsection*{Scalatura}
+- Gli indici di media, mediana, moda, quantili vengono traslati della stessa quantità $k$\\
+- Gli indici di range, distanza interquantile, varianza e deviazione rimangono invariati.
+\subsubsection{Scalatura}
 \begin{center}
 $h \neq 0$ $g(x) = \frac{x}{h}$
 \end{center}
 - Gli indici di media, mediana, quantili, range di variazione, distanza interquantile e deviazione standard vengono scalati di $\frac{1}{h}$\\
-- L'indice di varianza viene scalato di $\frac{1}{h^2}$
+- L'indice di varianza viene scalato di $\frac{1}{h^2}$ mentre la deviazione standard viene scalata di $\frac{1}{h}$
 
 \subsubsection{Cambiamento di scala e di origine}
-Se abbiamo dei valori nell'intervallo di $[a, b]$, e volgiamo adattarli all'intervallo $[c, d]$, ovvero: 
+Se abbiamo dei valori nell'intervallo di $[a, b]$, e vogliamo adattarli all'intervallo $[c, d]$, ovvero: 
 \begin{center}
 $(a, b) \rightarrow (c, d)$
 \end{center}
@@ -209,6 +257,15 @@ Consideriamo le seguenti particolare mappature:
 \item $(a, b) \rightarrow (-1, +1): x' = 2 \frac{x-a}{b-a} -1$
 \end{itemize}
 
+\subsubsection{Standardizzazione}
+O normalizzazione rappresenta un caso particolare di cambiamento di origine e scala, e consiste nell'applicare una scala il cui fattore è uguale alla deviazione standard dei valori, per poi traslare verso sinistra rispetto alla media dei valori. Con media campionaria \={x} e deviazione standard campionaria $\sigma_x$, la trasformazione sarà:
+\begin{equation*}
+	x \rightarrow x' = \frac{x-\text{\={x}}}{\sigma_o}
+\end{equation*}  
+La trasformazione di standardizzazione trasforma pertanto l'insieme dei valori in un altro insieme di valori la cui media è 0 e la cui varianza è 1.
+
+
+
 \subsubsection{Trasformazione logaritmica}
 Quando i valori di una variabile osservata sono molto grandi oppure molto distanziati, conviene pensare a tali valori come potenza di una data base, ragionando in termini del relativo esponente.
 \begin{center}
@@ -216,15 +273,19 @@ $g(x) = log x$
 \end{center}
 
 \subsection{ANOVA - Analysis of variance}
-Anova, o analysis of variance viene impiegato quando dato un insieme di osservazione, è possibile suddividerli in $G$ gruppi diversi. Intuitivamente con \begin{center}
+Anova, o analysis of variance viene impiegato quando dato un insieme di osservazione, è possibile suddividerli in $G$ gruppi diversi. L'idea alla base di questo metodo è che se non vi sono sostanziali differenze tra i gruppi considerati, allora calcolare la varianza all'interno di un gruppo qualsiasi non dovrebbe portare a un risultato molto dissimile da quello ottenuto effettuando il calcolo su tutti i dati a disposizione.
+
+Intuitivamente con \begin{center}
 $\sum_{i=1}^G n_i = n$
 \end{center}
-Rappresenta l'insieme di tutte le osservazioni, e:
-\begin{center}
+Rappresenta l'insieme di tutte le osservazioni, e
 $x_i^g$ rappresenta l'i-esima osservazione del g-esimo gruppo
+ove $g = 1, ..., G$ e $n_g =$ \# osservazioni nel g-esimo gruppo
+%porca di quella
+\begin{center}
+ \includegraphics[scale=0.4]{anova.png}
 \end{center}
-ove $g = 1, ..., G$ \hfill $n_g =$ \# osservazioni nel g-esimo gruppo
-\includegraphics[scale=0.7]{anova}
+
 
 E' possibile dimostrare che\begin{center}
 $SS_T = SS_W + SS_B$

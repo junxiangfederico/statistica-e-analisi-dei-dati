@@ -36,6 +36,7 @@ Gli attori fondamentali della statistica inferenziale sono la popolazione, il ca
 		\ev{t(X_1,\dots,X_n)} = \tau(\theta)
 	\end{equation*}
 \end{defin}
+Uno stimatore non è deviato quando non è soggetto ad un bias.
 
 \begin{examp}
 	Uno stimatore non deviato per stimare il valore atteso, indipendentemente dalla distribuzione, è quello che fa corrispondere alle specificazioni date la loro media:
@@ -86,7 +87,7 @@ Per definizione, se $T$ è uno stimatore non deviato per $\tau(\theta)$ allora $
 
 \subsection{Stimatori consistenti}
 \begin{defin}[Stimatore consistente in media quadratica]
-	Uno stimatore $T_n$\footnote{Più precisamente, si parla di una famiglia di stimatori $T_n$ i cui membri differiscono per dimensione del campione} è consistente in media quadratica per $\tau(\theta)$ se
+	Uno stimatore $T_n$\footnote{Più precisamente, si parla di una famiglia di stimatori $T_n$ i cui membri differiscono per dimensione del campione} è consistente in media quadratica per $\tau(\theta)$ (tau) se
 	\begin{equation*}
 		\lim_{n\to+\infty} \MSE_{\tau(\theta)}(T_n) = 0
 	\end{equation*}
@@ -98,6 +99,9 @@ Per definizione, se $T$ è uno stimatore non deviato per $\tau(\theta)$ allora $
 		\forall\varepsilon>0 \quad \lim_{n\to+\infty} P(\tau(\theta)-\varepsilon \leq T_n \leq \tau(\theta)+\varepsilon) = 1
 	\end{equation*}
 \end{defin}
+
+%\footnotesize{}
+%dato un \tau(\theta) fissato, dopo un valore  \epsilon, il valore sarà consistente
 
 \begin{teor}
 	Se uno stimatore $T$ è consistente in media quadratica per $\tau(\theta)$ allora $T$ è debolmente consistente per $\tau(\theta)$.
@@ -115,11 +119,13 @@ Per definizione, se $T$ è uno stimatore non deviato per $\tau(\theta)$ allora $
 
 
 \subsection{Legge dei grandi numeri}
+La legge dei grandi numeri forte ci dice che, date $n$ osservazioni con $n$ che tende ad infinito, lo stimatore media campionaria converge quasi certamente (ovvero $P = 1$) al valore atteso comune del $X_i$.
 \begin{teor}[legge dei grandi numeri forte]
 	\begin{equation*}
-		\lim_{n\to+\infty} P\left(\bar X_n = \mu\right) = 1
+		P( \lim_{n\to+\infty} \bar X_n = \mu )= 1
 	\end{equation*}
 \end{teor}
+Così come nella definizione di consistenza, possiamo definire la legge dei grandi numeri debole come:
 
 \begin{teor}[legge dei grandi numeri debole]
 	\begin{equation*}
@@ -127,11 +133,31 @@ Per definizione, se $T$ è uno stimatore non deviato per $\tau(\theta)$ allora $
 	\end{equation*}
 \end{teor}
 
+%Ragionamento sulla deviazione standard campionaria, e $n-1$
+% non si può derivare l'assenza di deviazione di s a partire da s^2
+
+%Consideriamo:
+%\begin{center}
+%Popolazione $x$ \quad campione $x_1, ..., x_n$ \quad $\ev{x} = \mu$ \quad $var(x) = %\sigma^2$
+%\end{center}
+%E di voler stimare $\sigma^2$. La varianza campionaria è definita come:
+%\begin{equation*}
+%s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar x)^2 \quad \ev{s^2} = \sigma^2
+%\end{equation*}
+%\begin{enumerate}
+%\item $\sum_{i=1}^{n} (x_i - \bar x)^2 = \sum_i x_i^2- n\bar x^2$
+%\item $\ev{x^2} = var(x) + \ev{x}^2$
+%\item $\ev{\bar x} = \mu , var(\bar x) = \frac{\sigma}{n}$
+%\end{enumerate}
+%...... 
+
+
+
 
 \subsection{Problema dello scarto}
 Un problema tipo che fa uso del teorema centrale del limite nella statistica inferenziale è il seguente.
 
-Sia $\bar X_n$ la media campionaria dipendente da $n$ elementi e sia $\mu$ il suo valore atteso. Si vuole che lo scarto $\abs{\bar X_n - \mu}$ tra i due valori sia minore di una soglia $r$ con probabilità superiore a $1-\delta$ (con $\delta$ piccolo a piacere):
+Sia $\bar X_n$ la media campionaria dipendente da $n$ elementi e sia $\mu$ il suo valore atteso. Si vuole che lo scarto $\abs{\bar X_n - \mu}$ tra i due valori sia minore di una soglia $r$ (o solitamente $\epsilon$) con probabilità superiore a $1-\delta$ (con $\delta$ piccolo a piacere):
 \begin{equation*}
 	P(\abs{\bar X_n - \mu} \leq r) \geq 1-\delta \\
 \end{equation*}
@@ -155,17 +181,22 @@ Ergo:
 
 Allo stesso modo si possono ricavare gli altri parametri del problema:
 \begin{gather*}
-	r = \frac{\sigma}{\sqrt{n}}\Phi^{-1}\left(1-\frac{\delta}{2}\right) \\
+	r \geq \frac{\sigma}{\sqrt{n}}\Phi^{-1}\left(1-\frac{\delta}{2}\right) \\
 	\delta \geq 2\left(1-\Phi\left(\frac{r}{\sigma}\sqrt{n}\right)\right)
 \end{gather*}
 % TODO: verificare che $\sqrt{s^2}$ sia uno stimatore non deviato per $\sigma$
 Mentre $\sigma$ tipicamente è stimato come $\sqrt{s^2}$ (dove $s$ è la deviazione standard campionaria).
-
+\subsubsection{Variante con Tchebishev}
+Consideriamo una variabile aleatoria $X$, con valore atteso: $\ev{X} = \mu$ e varianza: $var(X) = \sigma^2$:
 Un'alternativa a questo tipo di stima si può fare applicando la disuguaglianza di Tchebishev:
+\begin{equation*}
+ P(\abs{X - \mu} < r) = 1- P(\abs{x-\mu} \geq r) \geq 1 - \frac{\sigma^2}{r^2}
+\end{equation*}
 % TODO: r=\varepsilon, coerenza a riguardo
 % TODO: avere più uniformità tra i due metodi
+Ne consegue che:
 \begin{align*}
-	P(\abs{X-\mu}\geq r)                                                       & \leq \frac{\sigma^2}{r^2}     \\
+	\forall r > 0 \qquad P(\abs{X-\mu}\geq r)                                                       & \leq \frac{\sigma^2}{r^2}     \\
 	P(\abs{X-\mu} < r) = 1-P(\abs{X-\mu}\geq r)                                & \geq 1 - \frac{\sigma^2}{r^2} \\
 	P(\abs{\bar X-\mu} < \varepsilon) \geq 1 - \frac{\sigma^2}{n\varepsilon^2} & \geq 1-\delta                 \\
 	\frac{\sigma^2}{n\varepsilon^2}                                            & \leq \delta                   \\
@@ -174,43 +205,99 @@ Un'alternativa a questo tipo di stima si può fare applicando la disuguaglianza 
 \begin{gather*}
 	n \geq \frac{\sigma^2}{\delta\varepsilon^2} \Rightarrow P(\abs{\bar X-\mu}<\varepsilon) \geq 1-\delta \\
 	\delta\geq\frac{\sigma^2}{n\varepsilon^2} \\[1ex]
-	\varepsilon \geq \sqrt{\frac{\sigma^2}{n\delta}}
+	\varepsilon^2 \geq \frac{\sigma^2}{n\varepsilon} \rightarrow \varepsilon \geq \sqrt{\frac{\sigma^2}{n\delta}}
 \end{gather*}
 
+\subsubsection*{Per riassumere}
+Con teorema centrale del limite: 
+\begin{align*}
+n 	& \geq \frac{\sigma^2}{\varepsilon^2} \Phi^{-1}(1-\frac{\delta}{2})^2 \\
+ 	& \geq \frac{\sigma^2}{\varepsilon^2} \Phi^{-1} (1-\frac{\delta}{2})^2 < \frac{\sigma^2}{\delta \varepsilon^2}\\
+	& \geq \Phi^{-1} (1-\frac{\delta}{2})^2 < \frac{\sigma^2}{\delta}
+\end{align*}
+con Tchebishev:
+\begin{align*}
+	n & \geq \frac{\sigma^2}{\delta \varepsilon^2}\\
+	 & \geq \Phi^{-1} ( 1 - \frac{\delta}{2})^2 < \frac{1}{\delta}
+\end{align*}
+
+Il metodo di Tchebishev è preferibile quando si vuole evitare approssimazioni, tuttavia rappresenta una approssimazione più lasca rispetto al metodo con teorema centrale del limite in quanto deve essere sempre valido.
 
 % TODO: tutta la sezione sul processo di Poisson va rivista.
 % TODO: definizione di processo stocastico
+
 \subsection{Processo di Poisson}
 Il processo di Poisson dimostra che sotto certe ipotesi il problema del numero di eventi che avvengono in un certo intervallo di tempo è descritto da un modello di Poisson.
 
+\subsubsection{Processo stocastico}
 \begin{teor}
-	Sia $t$ una variabile temporale e $N(t)$ la variabile aleatoria che esprime il numero di eventi che avvengono nell'intervallo di tempo $[0,t)$. Verificate le seguenti ipotesi:
+	Sia $t$ una variabile temporale e $N(t)$ la variabile aleatoria che esprime il numero di eventi che avvengono nell'intervallo di tempo $[0,t)$. 
+	\end{teor}
+Possiamo dire che \begin{equation*}
+	\{N(t): t > 0\} 
+	\end{equation*}
+	
+	rappresenta un processo stocastico. Se estendiamo questa definizione con le seguenti ipotesi, possiamo dire che è anche un "processo di Poisson":\begin{center} con $\lambda > 0$
+	\end{center}
 	\begin{enumerate}
 		\item $N(0)=0$;
-		\item istanze di $N$ sono indipendenti per intervalli disgiunti;
+		\item istanze di $N$ sono indipendenti per intervalli disgiunti, di conseguenza sono anche variabili aleatore indipendenti;
+		\item la distribuzione del numero degli eventi dipende solo dalla lunghezza dell'intervallo di tempo (e non dalla loro posizione);
 		      % TODO: spiegare la versione approssimata dell'ipotesi 3
-		\item $\displaystyle\lim_{h\to0}\frac{P(N(h)=1)}{h}=\lambda$;
-		\item $\displaystyle\lim_{h\to0}\frac{P(N(h)\geq 2)}{h}=0$.
+		\item $\displaystyle\lim_{h\to0}\frac{P(N(h)=1)}{h}=\lambda$;\footnote{di conseguenza se $h$ è "piccolo" : $P(N(h) = 1) = \lambda h$}
+		\item $\displaystyle\lim_{h\to0}\frac{P(N(h)\geq 2)}{h}=0$.\footnote{per $^6$, $P(N(h) \geq 2) = 0$}
+
+
 	\end{enumerate}
 	allora $N(t)$ è distribuita secondo il modello di Poisson con parametro $\lambda t$:
 	\begin{equation*}
 		N(t)\sim P(\lambda t)
 	\end{equation*}
-\end{teor}
 
 \begin{proof}
 	Volendo calcolare la massa di probabilità $P(N(t)=k)$, si sceglie $n\in\N$ e si divide l'intervallo $[0,t)$ in $n$ parti uguali $[\frac{m}{n}t,\frac{m+1}{n}t)$. Potendo scegliere $n$ grande a piacere si può scegliere in particolare $n>k$.
 
-	L'evento $N(t)=k$, di cui si vuole calcolare la probabilità, è esprimibile come l'unione disgiunta di due eventi:
+	L'evento $N(t)=k \in \mathbb{N}$, di cui si vuole calcolare la probabilità, è esprimibile come l'unione disgiunta di due eventi:
 	\begin{itemize}
 		\item $A$: ognuno dei $k$ eventi avviene in un intervallo diverso, ossia: ogni intervallo contiene al più un evento, per un totale di $k$ eventi;
 		\item $B$: esiste almeno un intervallo che contiene due eventi, per un totale di $k$ eventi.
 	\end{itemize}
-
-	Ricordando che $n$ è grande a piacere, per l'ipotesi 4 la probabilità che uno specifico intervallo contenga due eventi tende a $0$. Inoltre, per l'ipotesi 2 la probabilità dell'evento $B$ è calcolabile come il prodotto delle singole. La probabilità complessiva è quindi il prodotto di fattori tendenti a $0$ ed è pertanto tendente a $0$ per $n\to+\infty$. Si ha quindi:
+	e quindi:
 	\begin{equation*}
-		P(N(t)=k)=P(A)
+		N(t)=k \in \mathbb{N} \leftrightarrow (A) \cup (B)
 	\end{equation*}
+	Ricordando che $n$ è grande a piacere, per l'ipotesi 4 la probabilità che uno specifico intervallo contenga due eventi tende a $0$. 
+	Inoltre, per l'ipotesi 2 la probabilità dell'evento $B$ è calcolabile come il prodotto delle singole. 
+	
+	La probabilità complessiva è quindi il prodotto di fattori tendenti a $0$ ed è pertanto tendente a $0$ per $n\to+\infty$. Si ha quindi:
+	\begin{align*}
+		P(N(t)=k) & = P (A \cup B) = P(A) +  \xcancel{P(B)}\\
+				& = \binom{n}{k} (\lambda \frac{t}{n})^k (1 - \lambda \frac{t}{n})^{n-k}
+	\end{align*}
+e quindi:
+\begin{equation*}
+	N(t) \sim B(n, \frac{\lambda t}{n})
+\end{equation*}
+
+
+Poiché il prodotto dei parametri della binomiale trovata è costante, ed essendo $n\to+\infty$, per quanto visto al paragrafo \ref{subsub:binompois} la distribuzione è ben descritta da un modello di Poisson di parametro $\lambda t$:
+	\begin{equation*}
+		N(t) \sim P(\lambda t)
+	\end{equation*}
+
+Per riassumere, con $n \rightarrow \infty$:
+\begin{equation*}
+	P(N(t) = k) = \frac{(\lambda t)^k}{k!} e^{-\lambda t}\quad I_{\mathbb{N} \cup \{0\}^{(k)}} 
+\end{equation*}
+
+%Inoltre:
+%\begin{equation*}
+ %P(nessun evento in (s, s+t\] = P (nessun evento in (0, t\] = 
+ %P(N(t) = 0) = e^{-\lambda t}
+%\end{equation*}
+
+-----------
+
 
 	Siano $B_i$ le variabili aleatorie bernoulliane che descrivono l'esistenza o meno di un evento nell'$i$-esimo intervallo. Per l'ipotesi 3 si ha, per $n\to+\infty$:
 	\begin{equation*}
@@ -227,9 +314,6 @@ Il processo di Poisson dimostra che sotto certe ipotesi il problema del numero d
 		N(t) = B'
 	\end{gather*}
 
-	Poiché il prodotto dei parametri della binomiale trovata è costante, ed essendo $n\to+\infty$, per quanto visto al paragrafo \ref{subsub:binompois} la distribuzione è ben descritta da un modello di Poisson di parametro $\lambda t$:
-	\begin{equation*}
-		N(t) \sim P(\lambda t)
-	\end{equation*}
+	
 	% TODO: esponenziale per il tempo trascorso da un evento all'altro
 \end{proof}
