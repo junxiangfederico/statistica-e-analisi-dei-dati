@@ -62,8 +62,6 @@ Per il teorema fondamentale del calcolo integrale, da ciò deriva che la funzion
 
 
 
-
-
 \begin{defin}[funzione di densità di probabilità]
 La probabilità di variabili aleatorie continue viene calcolata integrando la funzione di densità di probabilità:
 \begin{equation*}
@@ -80,6 +78,37 @@ La proprietà della definizione non è altro che la conseguenza del primo assiom
 	P(X\in\R) = \int_{-\infty}^{+\infty} f_X(x)dx = \int_\R f_X(x)dx = 1
 \end{equation*}
 \end{defin}
+
+
+Per riassumere:
+\subsubsection{Legami tra funzione di ripartizione, funzione di massa e funzione di densità}
+\begin{enumerate}
+\item Passare da funzione di ripartizione $F_x$  a quella di massa $f_x$:
+\begin{equation*}
+f_X(x_i) := \begin{cases}
+F_x(x_i) - F_x(x_{i-1}) \quad per x_i \in S_x\\
+0 \quad per \quad x_i \notin S_x
+\end{cases}
+\end{equation*}
+
+\item Passare da funzione di massa $f_x$ a quella di ripartizione $F_x$:
+\begin{equation*}
+F_x (x) = P(X \leq x) = \sum_{t\leq x}f_x(t)
+\end{equation*}
+
+\item Passare dalla funzione di ripartizione $F_x$ a quella di densità $f_x$:
+\begin{equation*}
+f_x(x) = \frac{d F_x(x)}{dx}
+\end{equation*}
+ovvero la funzione di densità è la derivata prima della funzione di ripartizione.
+
+\item Passare dalla funzione di densità $f_x$ a quella di ripartizione $F_x$:
+\begin{equation*}
+F_x(x) = \int_a^x f(t)dx
+\end{equation*}
+\end{enumerate}
+
+
 
 
 \subsection{Valore atteso}
